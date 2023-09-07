@@ -1,0 +1,64 @@
+﻿<Window x:Class="MVVMBase.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVMBase"
+        xmlns:view="clr-namespace:MVVMBase.MVVM.View"
+        xmlns:viewModel="clr-namespace:MVVMBase.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"   
+        WindowStartupLocation="CenterScreen"
+        >
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+    
+    <!--Main grid-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="170"/>
+        </Grid.RowDefinitions>
+
+        <!--Main-->
+        <Grid Grid.Column="0" Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Row="0" Grid.Column="0" Command="{Binding Button1}">Начать считывание</Button>
+            <Button Grid.Row="0" Grid.Column="1" Command="{Binding Button2}">Остановить считывание</Button>
+            <Button Grid.Row="1" Grid.Column="0">Кнопка 3</Button>
+            <Button Grid.Row="1" Grid.Column="1">Кнопка 4</Button>
+
+            <Label Grid.Row="2" Grid.Column="0" 
+                   Content="Период опроса" 
+                   HorizontalAlignment="Right"/>
+            <TextBox Grid.Row="2" Grid.Column="1"
+                     Text="{Binding PollingCycle}"/>
+
+        </Grid>
+
+        <GridSplitter  Grid.Row="1" 
+                       Height="5" 
+                       HorizontalAlignment="Stretch" 
+                       VerticalAlignment="Center"
+                       BorderThickness="0"
+                       Background="Transparent"
+                       />
+
+        <!--Output-->
+        <Grid Grid.Row="2">
+            <view:Output/>
+        </Grid>
+
+    </Grid>
+</Window>
